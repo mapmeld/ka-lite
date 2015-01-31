@@ -247,12 +247,17 @@ def video_handler(request, video, format="mp4", prev=None, next=None):
         vid_lang = select_best_available_language(request.language, available_codes=available_urls.keys())
 
 
+    ogg_url = ""
+    if "stream" in video["availability"].get(vid_lang):
+        ogg_url = str(video["availability"].get(vid_lang)["stream"]).replace('mp4', 'ogv')
+
     context = {
         "video": video,
         "title": video["title"],
         "num_videos_available": len(video["availability"]),
         "selected_language": vid_lang,
         "video_urls": video["availability"].get(vid_lang),
+        "ogg_url": ogg_url,
         "subtitle_urls": video["availability"].get(vid_lang, {}).get("subtitles"),
         "prev": prev,
         "next": next,

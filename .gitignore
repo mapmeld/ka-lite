@@ -27,6 +27,7 @@ writeup/
 /content/*.png
 /content/*.mp4
 /content/*.mp4.part
+/content/*.ogv
 /content/*.srt
 /data/logs
 /data/i18n
